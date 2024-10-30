@@ -572,7 +572,7 @@ class JciHitachiAWSMqttConnection:
 
     def _on_publish(self, topic: str, payload: bytes, dup, qos, retain, **kwargs):
         try:
-            payload = json.loads(payload.decode())
+            payload = json.loads(payload.decode("utf-8", "ignore"))
         except Exception as e:
             self._mqtt_events.mqtt_error = e.__class__.__name__
             self._mqtt_events.mqtt_error_event.set()
